@@ -39,8 +39,8 @@ static const Rule rules[] = {
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-    { "float-term",NULL, NULL, 0, 1, 0 },
-    { NULL, NULL, "stfloat", 0, 1, -1 },
+    { "float-term",NULL,   NULL,           0,         1,          0 },
+    { NULL,      NULL,     "stfloat",      0,         1,         -1 },
 };
 
 /* layout(s) */
@@ -69,7 +69,7 @@ static const Layout layouts[] = {
 	{ MOD, XK_j,     ACTION##stack, {.i = INC(+1) } }, \
 	{ MOD, XK_k,     ACTION##stack, {.i = INC(-1) } }, \
 	{ MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \
-	{ MOD, XK_q,     ACTION##stack, {.i = 0 } }, \
+	{ MOD, XK_i,     ACTION##stack, {.i = 0 } }, \
 	{ MOD, XK_a,     ACTION##stack, {.i = 1 } }, \
 	{ MOD, XK_z,     ACTION##stack, {.i = 2 } }, \
 	{ MOD, XK_x,     ACTION##stack, {.i = -1 } },
@@ -143,9 +143,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
   //{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-    { MODKEY|ShiftMask,             XK_BackSpace,      quit,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
-    	{ MODKEY,                       XK_Print, spawn, SHCMD("screenShot_xclip")  },
+    { MODKEY|ShiftMask,             XK_q,      quit,           {1} },
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },
+    { MODKEY,                       XK_Print, spawn, SHCMD("screenShot_xclip")  },
   	{ MODKEY|ShiftMask,             XK_Print, spawn, SHCMD("gnome-screenshot -f ~/Pictures/Screenshot-$(date '+%Y-%m-%d-%H:%M').png")  },
     { 0,                            XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
    	{ 0,                            XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },
