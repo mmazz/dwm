@@ -1,5 +1,20 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h> // for audio keys
+
+/* Add somewhere in your constants definition section */
+//static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+//static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+//static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+
+/* If you use amixer, use this instead. Thanks go to DaniOrt3ga. */
+static const char *upvol[] = { "/usr/bin/amixer", "set", "Master", "5%+", NULL };
+static const char *downvol[] = { "/usr/bin/amixer", "set", "Master", "5%-", NULL };
+static const char *mutevol[] = { "/usr/bin/amixer", "set", "Master", "toggle", NULL };
+
+/* To use light add this to the constant definition section. Thanks Hritik14. */
+static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
+static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
+
 #define TERMINAL "st"
 /* appearance */
 static unsigned int borderpx  = 4;        /* border pixel of windows */
@@ -46,7 +61,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
-static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -145,11 +160,12 @@ static const Key keys[] = {
   //{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     { MODKEY|ShiftMask,             XK_q,      quit,           {1} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },
+    { MODKEY|ShiftMask,             XK_l, spawn, SHCMD("change-keyboard")  },
     { MODKEY,                       XK_Print, spawn, SHCMD("screenShot_xclip")  },
   	{ MODKEY|ShiftMask,             XK_Print, spawn, SHCMD("gnome-screenshot -f ~/Pictures/Screenshot-$(date '+%Y-%m-%d-%H:%M').png")  },
     { 0,                            XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
-   	{ 0,                            XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },
-	{ 0,                            XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },
+    { 0,                            XF86XK_AudioRaiseVolume,	spawn,		SHCMD("pamixer --allow-boost -i 5; kill -44 $(pidof dwmblocks)") },
+ 	{ 0,                            XF86XK_AudioLowerVolume,	spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },
     { MODKEY|ShiftMask,             XK_c,		spawn,		SHCMD("st -c float-term bc -lq") },
     { MODKEY,                       XK_n,		spawn,		SHCMD("st -c float-term notetaker") },
     { MODKEY|ShiftMask,             XK_n,		spawn,		SHCMD("st -c float-term mostRecentNote") },
@@ -158,7 +174,13 @@ static const Key keys[] = {
     { 0, XF86XK_AudioNext,		spawn,		SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") },
     { 0, XF86XK_AudioPrev,		spawn,		  SHCMD(" dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") },
     { MODKEY|ShiftMask,              XK_h,		spawn,		SHCMD("zathura ~/.config/templates/shortcuts.pdf") },
+  	//{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	//{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
+	//{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+	{ 0,				XF86XK_MonBrightnessUp,		spawn,	{.v = light_up} },
+	{ 0,				XF86XK_MonBrightnessDown,	spawn,	{.v = light_down} },
 };
+
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
