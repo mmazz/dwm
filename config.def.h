@@ -164,7 +164,7 @@ static const Key keys[] = {
   //{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
     { MODKEY|ShiftMask,             XK_q,      quit,           {1} },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },
-    { MODKEY|ShiftMask,             XK_l, spawn, SHCMD("change-keyboard")  },
+    { MODKEY|ShiftMask,             XK_k, spawn, SHCMD("change-keyboard;  kill -44 $(pidof dwmblocks)")  },
     { MODKEY,                       XK_Print, spawn, SHCMD("screenShot_xclip")  },
   	{ MODKEY|ShiftMask,             XK_Print, spawn, SHCMD("gnome-screenshot -f ~/pictures/Screenshot-$(date '+%Y-%m-%d-%H:%M').png")  },
     { 0,                            XF86XK_AudioMute,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
