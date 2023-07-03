@@ -50,12 +50,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "Brave-browser",   NULL,     NULL,           0,         0,          0,          -1,        -1 },
-	{  "Spotify",     NULL,    NULL,       1<<4,         0,          0,          -1,        -1 },
-	{ "pavucontrol", NULL,     NULL,       1<<8,         0,          0,          -1,        -1 },
-	{ "keepassxc", NULL,     NULL,       8,         0,          0,          -1,        -1 },
+	{ "Gimp",    NULL,     NULL,           1<<5,         0,          0,           0,        -1 },
+//	{ "Firefox", NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
+	{ "Spotify",     NULL,    NULL,       1<<4,         0,          0,          -1,        -1 },
+	{ "Pavucontrol", NULL,     NULL,       1<<8,         0,          0,          -1,        -1 },
+	{ "KeePassXC", NULL,     NULL,         1<<7,         0,          0,          -1,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
     { "float-term",NULL,   NULL,           0,         1,          0 },
