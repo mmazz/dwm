@@ -177,7 +177,7 @@ static const Key keys[] = {
     { 0, XF86XK_AudioPlay,		spawn,	SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPausei") },
     { 0, XF86XK_AudioNext,		spawn,		SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") },
     { 0, XF86XK_AudioPrev,		spawn,		  SHCMD(" dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") },
-    { MODKEY|ShiftMask,              XK_h,		spawn,		SHCMD("zathura ~/.config/templates/shortcuts.pdf") },
+    { MODKEY|ControlMask,              XK_h,		spawn,		SHCMD("zathura ~/.config/templates/shortcuts.pdf") },
   	//{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	//{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
 	//{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
